@@ -20,6 +20,7 @@ void deltalist_deleteValue(char id){
     a = &deltalist[*a].next;
   }
 }
+
 void deltalist_setValue(char _id, char value){
     char * id;
     deltalist_deleteValue(_id);

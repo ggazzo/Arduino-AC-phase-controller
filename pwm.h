@@ -1,7 +1,6 @@
 #include "deltalist.h"
-#define DETECT 2  //pin zero cross detect
 void zeroCrossingInterrupt();
-inline pwm_configure() {
+inline void pwm_configure() {
   /* TIMER */
   //set timer1 interrupt at 6000Hz
   TCCR1A = 0;// set entire TCCR1A register to 0
