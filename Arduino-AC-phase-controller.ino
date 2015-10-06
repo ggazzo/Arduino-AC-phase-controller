@@ -24,13 +24,14 @@ class Out {
       return value;
     }
 };
+char current = -1;
 struct deltaItem {
     char value;
     char next;
 } ;
 
 struct deltaItem deltalist [NUMBER_OUTPUT] ;
-char current = -1;
+
 void deleteValue(char id){
   char * a = &current;
   while( *a > -1 ){
@@ -54,10 +55,10 @@ void setValue(char _id, char value){
         return;
     }
     id = &current;
-    do {        
+    do {
         if(deltalist[*id].value < deltalist[_id].value ){
             deltalist[_id].value -= deltalist[*id].value;
-            
+
             if(deltalist[*id].next == -1){
               deltalist[*id].next = _id;
               return;
@@ -71,7 +72,7 @@ void setValue(char _id, char value){
             return;
         }
     } while(*id > -1);
-    
+
 }
 Out outs [NUMBER_OUTPUT]  = {Out(0,5),Out(1,15),Out(2,17)};
 void setup(){
@@ -82,7 +83,7 @@ void setup(){
   TCCR1B = 0;// same for TCCR1B
   TCNT1  = 0;//initialize counter value to 0
   // set compare match register for 1hz increments
-  OCR1A = 40000;// = (16*10^6) / (6000*1) - 1 (must be <65536)
+  OCR1A = 40;// = (16*10^6) / (6000*1) - 1 (must be <65536)
   // turn on CTC mode
   TCCR1B |= (1 << WGM12);
   // Set CS10 and CS12 bits for 1024 prescaler
@@ -102,7 +103,7 @@ void setup(){
 }
 
 void zeroCrossingInterrupt(){ //zero cross detect
-  
+
   TCNT1 = 0;   //reset timer - count from zero
   for(char i = 0; i < NUMBER_OUTPUT; i++){
     setValue(i,outs[i].getValue());
