@@ -4,6 +4,10 @@ ehthumbs.db
 
 # Folder config file
 Desktop.ini
+**/build/*
+
+**/cache/*
+
 **/dist/*
 **/node_modules/*
 **/bower_components/*
