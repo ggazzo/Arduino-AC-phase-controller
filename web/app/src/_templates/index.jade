@@ -1,0 +1,16 @@
+html
+  head
+    title Tela de controle
+    link(rel='stylesheet', type='text/css', href='../_css/app.css')    
+    script(src='../_js/app.js')
+  body
+    #top-titlebar.top-titlebar(style='background-color: rgb(122, 124, 124);')
+      .top-titlebar-icon
+        img#top-titlebaricon(src='../_img/top-titlebar.png')
+      .top-titlebar-text Tela de controle
+      .top-titlebar-close-button
+        img#top-titlebar-close-button(src='../_img/button_close.png')
+      .top-titlebar-divider
+      
+     #container
+         include ./_gauges.jade

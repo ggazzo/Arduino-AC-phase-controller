@@ -22,7 +22,7 @@
     "tests"
   ],
   "dependencies": {
-    "Chart.js": "northstar-chart#~0.2.0",
+    "Chart.js": "~0.2.0",
     "justgage":"*"
   }
 }
