@@ -4,7 +4,9 @@ ehthumbs.db
 
 # Folder config file
 Desktop.ini
-
+**/dist/*
+**/node_modules/*
+**/bower_components/*
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
 
