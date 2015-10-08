@@ -7,7 +7,9 @@ var jshint = require('gulp-jshint');
 gulp.task('default', ["lint", "es6"]);
 gulp.task('lint', function() {
     return gulp.src('./src/**/*.js')
-        .pipe(jshint({ esnext: true }))
+        .pipe(jshint({
+            esnext: true
+        }))
         .pipe(jshint.reporter('jshint-stylish'))
         .pipe(jshint.reporter('fail'));
 });
