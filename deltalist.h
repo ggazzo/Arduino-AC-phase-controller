@@ -1,14 +1,16 @@
-char deltalist_current = -1;
+index deltalist_current = -1;
+
+typedef char index;
 
 struct deltaItem {
     char value;
-    char next;
+    index next;
 } ;
 
 struct deltaItem deltalist [NUMBER_OUTPUT] ;
 
-void deltalist_deleteValue(char id){
-  char * a = &deltalist_current;
+void deltalist_deleteValue(index id){
+  index * a = &deltalist_current;
   while( *a > -1 ){
     if(id == *a){
       *a = deltalist[*a].next;
@@ -21,8 +23,8 @@ void deltalist_deleteValue(char id){
   }
 }
 
-void deltalist_setValue(char _id, char value){
-    char * id;
+void deltalist_setValue(index _id, index value){
+    index * id;
     deltalist_deleteValue(_id);
     deltalist[_id].value = value;
     deltalist[_id].next = -1;
