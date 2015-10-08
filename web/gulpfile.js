@@ -10,6 +10,7 @@ var sass = require('gulp-sass');
 var gulpJade = require('gulp-jade');
 var concat = require('gulp-concat');
 var gulpSequence = require('gulp-sequence');
+var debowerify = require('debowerify');
 
 gulp.task('default', ['nw']);
 var browserify = require('gulp-browserify');
@@ -17,10 +18,11 @@ var browserify = require('gulp-browserify');
 // // Basic usage
 gulp.task('browserify', function() {
     // Single entry point to browserify
-    gulp.src('./app/bower_components/**')
+    gulp.src('./dist/_js/app.js')
         .pipe(browserify({
           insertGlobals : true,
-          debug : !gulp.env.production
+          exclude:"nw.gui",
+          transform : debowerify
         }))
         .pipe(gulp.dest('./dist/_js'))
 });
@@ -104,7 +106,7 @@ gulp.task('nw', ['all', "copy"], function() {
 
     var nw = new NwBuilder({
         version: '0.11.0',
-        files: ['./dist/**'],
+        files: ['./dist/**','./bower_components/'],
         macIcns: './icon.ico',
         macPlist: {
             mac_bundle_id: 'myPkg'
