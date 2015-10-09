@@ -22,7 +22,7 @@
     "tests"
   ],
   "dependencies": {
-    "Chart.js": "~0.2.0",
-    "justgage":"*"
+    "justgage":"*",
+    "chartjs":"*"
   }
 }

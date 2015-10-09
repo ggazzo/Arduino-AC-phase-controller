@@ -32,27 +32,6 @@
             margin: 0;
         }
 
-        .temperature__target {
-            width: 100px;
-            margin: auto;
-            height: 50px;
-            font-size: 50px;
-            border: 0;
-            text-align: center;
-            outline: none;
-        }
-
-        .temperature {
-            position: relative;
-            display: inline;
-        }
-
-        .temperature::before {
-            content: "º";
-            font-size: 50px;
-            position: absolute;
-            right: -10px;
-        }
         /* --------------------------
   General Layout Styles
 -------------------------- */
@@ -83,131 +62,10 @@
             height: 750px;
         }
 
-        .option {
-            display: inline-block;
-            width: 250px;
-            margin: 0 auto 20px;
-        }
-
-        .option-label {
-            margin: 0;
-            height: 55px;
-            font-size: 55px;
-            text-align: center;
-            color: #3e3e3e;
-        }
-        /* Thermometer Column */
-
-        .thermometer {
-            margin: 0 auto 140px;
-            width: 100px;
-            height: 200px;
-            display: block;
-            font-weight: 700;
-            border: 5px solid;
-            border-color: #717171;
-            border-bottom: none;
-            position: relative;
-            box-shadow: inset 0 0 0 6px #fff;
-            background: #fff;
-            border-radius: 70px 70px 0 0;
-        }
-
-        .thermometer > .results {
-            height: 98%;
-            border-radius: 70px 70px 0 0;
-            border: 8px solid #fff;
-            z-index: 1;
-            position: absolute;
-            bottom: 7px;
-            width: 84px;
-            border-bottom: 0;
-            border-top: 0;
-        }
-        /* Thermometer Bulb */
-
-        .thermometer:before {
-            content: ' ';
-            width: 150px;
-            height: 150px;
-            display: block;
-            position: absolute;
-            bottom: -135px;
-            left: -30px;
-            z-index: 0;
-            background-color: #db3f02;
-            border-radius: 50%;
-            border: 5px solid;
-            border-color: #717171;
-            box-shadow: inset 0 0 0 7px #fff;
-            text-align: center;
-            font-size: 40px;
-            line-height: 120px;
-            text-shadow: 0 2px 0 rgba(255, 255, 255, 0.75);
-        }
-        /* This piece here connects the column with the bulb */
-
-        .thermometer:after {
-            content: ' ';
-            width: 84px;
-            height: 5px;
-            display: block;
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            background-color: #db3f02;
-            border: 8px solid #fff;
-            border-bottom: none;
-            border-radius: 50% 50% 0 0;
-            border-top: 23px solid #fff;
-        }
-        /* Thermometer Column Fill */
-
-        .thermometer .results .on {
-            width: 100%;
-            height: 0;
-            background-color: #db3f02;
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            display: inline;
-            border-radius: 70px 70px 0 0;
-            min-height: 0;
-            max-height: 100%;
-        }
-        /* This is the tag/label showing how full (as a percentage of 100) the thermometer is*/
-
-        .thermometer .results .on .count {
-            position: absolute;
-            left: 105px;
-            font-size: 55px;
-            top: -25px;
-            padding: 10px;
-            background-color: rgba(164, 164, 164, 0.5);
-            border-radius: 0 6px 6px 0;
-        }
-
-        .thermometer .results .on .count:before {
-            left: -84px;
-            bottom: 0;
-            border: solid transparent;
-            content: " ";
-            height: 0;
-            width: 0;
-            position: absolute;
-            pointer-events: none;
-            border-color: rgba(169, 169, 169, 0);
-            border-right-color: rgba(164, 164, 164, 0.5);
-            border-width: 42px;
-            margin-top: -5px;
-        }
         /* --------------------------
  Demo Results
 -------------------------- */
 
-        #option-1 .results .on {
-            height: 20%;
-        }
     </style>
 </head>
 
@@ -215,42 +73,7 @@
     <div id="cont" class="container">
 
 
-        <h1>Temperaturas</h1>
-        <div id="myChart"></div>
-        <div id="option-1" class="option">
-            <div class="temperature">
-                <input class="temperature__target" type="number" name="name" min="0" max="110" value="">
-            </div>
-            <div class="thermometer">
-                <div class="results">
-                    <div class="on">
-                        <span class="count">20%</span>
-                    </div>
-                </div>
-            </div>
-            <h3 class="option-label">Panela 1</h3>
-        </div>
-        <div id="option-2" class="option">
-            <div class="thermometer">
-                <div class="results">
-                    <div class="on">
-                        <span class="count">20%</span>
-                    </div>
-                </div>
-            </div>
-            <h3 class="option-label">Panela 2</h3>
-        </div>
-        <div id="option-3" class="option">
-            <div class="thermometer">
-                <div class="results">
-                    <div class="on">
-                        <span class="count">20%</span>
-                    </div>
-                </div>
-            </div>
-            <h3 class="option-label">Panela 3</h3>
-        </div>
-    </div>
+
     <script src="../chartist-js-master/dist/chartist.js" charset="utf-8"></script>
     <script src="../chart/Chart.min.js"></script>
     <script src="../raphael-2.1.4.min.js"></script>

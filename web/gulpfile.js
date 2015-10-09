@@ -11,24 +11,42 @@ var gulpJade = require('gulp-jade');
 var concat = require('gulp-concat');
 var gulpSequence = require('gulp-sequence');
 var debowerify = require('debowerify');
+var wrapCommonjs = require('gulp-wrap-commonjs');
+var deamdify = require('deamdify');
+gulp.task('commonjs', function(){
+  gulp.src(['dist/_js/components/**/*.js'])
+    .pipe(wrapCommonjs({
+      pathModifier: function (path) {
+        path =  '';
+        return path;
+      }
+    }))
+    .pipe(gulp.dest('dist/_js'));
+});
+gulp.task('default', ['all']);
 
-gulp.task('default', ['nw']);
 var browserify = require('gulp-browserify');
+//var bower = require('gulp-bower');
+var install = require("gulp-install");
 
+gulp.task('bower', function() {
+    return gulp.src(['./bower.json', './package.json'])
+      .pipe(install());
+});
 // // Basic usage
 gulp.task('browserify', function() {
     // Single entry point to browserify
-    gulp.src('./dist/_js/app.js')
+    return gulp.src('./dist/_js/app.js')
         .pipe(browserify({
-          insertGlobals : true,
-          exclude:"nw.gui",
-          transform : debowerify
+            exclude: "nw.gui",
+            transform: [deamdify,debowerify]
         }))
-        .pipe(gulp.dest('./dist/_js'))
+        .pipe(gulp.dest('./dist/_js'));
+
 });
 
 
-gulp.task("all", gulpSequence(["lint", 'cleanDist'], "es6", "jade", "sass", "img", "copy","bower"));
+gulp.task("all", gulpSequence(["lint", 'cleanDist'], ["es6", "jade", "sass", "img", "copy"], "bower",'browserify'));
 
 gulp.task('lint', function() {
     return gulp.src('app/src/**/*.js')
@@ -92,13 +110,9 @@ gulp.task('cleanDist', function() {
         .pipe(clean());
 });
 
-gulp.task('bower', function() {
-    return gulp.src(["./app/bower_components/**"])
-        .pipe(gulp.dest('dist/bower_components/'));
-});
 
 gulp.task('copy', function() {
-    return gulp.src(['package.json','app/bower.json'])
+    return gulp.src(['package.json'])
         .pipe(gulp.dest('dist/'));
 });
 
@@ -106,7 +120,7 @@ gulp.task('nw', ['all', "copy"], function() {
 
     var nw = new NwBuilder({
         version: '0.11.0',
-        files: ['./dist/**','./bower_components/'],
+        files: ['./dist/**', './bower_components/'],
         macIcns: './icon.ico',
         macPlist: {
             mac_bundle_id: 'myPkg'
